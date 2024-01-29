@@ -1,37 +1,62 @@
-import { useEffect, useState } from "react";
-import "./App.css";
-import Card from "./components/Card/Card";
-import HeroSection from "./components/HeroSection/HeroSection";
-//@ts-ignore
-import NavBar from "./components/NavBar/NavBar";
-import { fetchTopAlbums } from "./components/api/api";
-import Section from "./components/Sections/Section";
+import React, { useEffect, useState } from 'react'
+import { Header, NavBar, FAQAccordion, GridSection, Line, MusicPlayer, } from './components';
+import { fetchNewAlbums, fetchTopAlbums, fetchSongs } from './api/api';
 
-function App() {
-  const [topAlbumData, settopAlbumData] = useState([]);
-  const generateTopAlbumData = async () => {
-    const data = await fetchTopAlbums();
-    console.log(data);
-    settopAlbumData(data);
-  };
+const App = () => {
+
+  const [dataTopAlbums, setDataTopAlbums] = useState([]);
+  const [dataNewAlbum, setDataNewAlbum] = useState([]);
+  const [dataSong, setDataSong] = useState([]);
+
+  const getDataTopAlbums = async () => {
+    try {
+      const res = await fetchTopAlbums();
+      setDataTopAlbums(res);
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const getDataNewAlbums = async () => {
+    try {
+      const res = await fetchNewAlbums();
+      setDataNewAlbum(res);
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const getDataSongs = async () => {
+    try {
+      const res = await fetchSongs();
+      setDataSong(res);
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   useEffect(() => {
-    generateTopAlbumData();
-  }, []);
-  console.log(topAlbumData, "topAlbumData");
+    getDataTopAlbums();
+    getDataNewAlbums();
+    getDataSongs()
+  }, [])
+
   return (
-    <div className="App">
-      <NavBar />
-      <HeroSection />
-      <div className="sectionWrapper">
-        <Section type="album" title="Top Albums" data={topAlbumData} />
-      </div>
-      {/* <div className="cardContainer">
-      {topAlbumData.map((item) => {
-        return <Card key={item.id} data={item} type="album" />;
-      })}
-      </div> */}
+    <div>
+      <NavBar data={dataTopAlbums} />
+      <Header />
+      <GridSection title={"Top Albums"} data={dataTopAlbums} type={"album"} />
+      <GridSection title={"New Albums "} data={dataNewAlbum} type={"album"} />
+      <Line />
+      <GridSection title={"Songs "} data={dataSong} type={"song"} setDataSong={setDataSong} />
+      <FAQAccordion />
+      <Line />
+      <MusicPlayer data={dataTopAlbums} />
     </div>
-  );
+  )
 }
 
 export default App;
+
+
+

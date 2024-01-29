@@ -1,7 +1,6 @@
-import React from "react";
-import logo from "../../assets/logo.png";
-const Logo = () => {
-  return <img src={logo} alt="Qtify Logo" width="67px" height="34px" />;
-};
+import React from 'react';
+import logo from '../../assets/image.png';
+
+const Logo = () => <img src={logo} alt="logo" width={100} />;
 
 export default Logo;

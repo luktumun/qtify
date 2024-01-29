@@ -1,7 +1,6 @@
 export { default as NavBar } from './NavBar/NavBar.jsx';
 export { default as Header } from './Header/Header.jsx';
 export { default as SearchBar } from './SearchBar/SearchBar.jsx';
-export { default as Search1 } from './SearchBar/Search1.jsx';
 export { default as MenuItem } from './MenuItem/MenuItem.jsx';
 
 

@@ -1,11 +1,3 @@
-// import React, { useEffect } from "react";
-// import styles from "./Carousal.module.css";
-// //@ts-ignore
-// import Swiper from "swiper";
-// import { useSwiper,SwiperSlide  } from 'swiper/react';
-// import "swiper/css";
-// import  CarousalLeftNavigation  from "./CarousalLeftNavigation/CarousalLeftNavigation";
-// import  CarousalRightNavigation  from "./CarousalRightNavigation/CarousalRightNavigation";
 import { Navigation } from "swiper/modules";
 
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
@@ -13,8 +5,6 @@ import styles from "./Carousal.module.css";
 import { useEffect } from "react";
 
 import "swiper/css";
-// import { CarousalLeftNavigation } from './CarousalLeftNavigation/CarousalLeftNavigation';
-// import { CarousalRightNavigation } from './CarousalRightNavigation/CarousalRightNavigation';
 
 const Controls = ({ data }) => {
   const swiper = useSwiper();
@@ -34,8 +24,7 @@ const Carousal = ({ data, renderCardComponent }) => {
         allowTouchMove
       >
         <Controls data={data} />
-        {/* <CarousalLeftNavigation/>
-        <CarousalRightNavigation/> */}
+
         {data.map((item) => {
           <SwiperSlide>{renderCardComponent(item)}</SwiperSlide>;
         })}
